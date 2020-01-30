@@ -106,9 +106,10 @@ Chris(4,2)=thd_mag_at(find(thd_mag_at(15:20000) == min(thd_mag_at(15:20000))));
 Chris(5,1)=find(thd_mag_at(15:20000) == max(thd_mag_at(15:20000)));
 Chris(5,2)=thd_mag_at(find(thd_mag_at(15:20000) == max(thd_mag_at(15:20000))));
 
-figure;plot(thd_mag_at);
+figure;
+semilogx(thd_mag_at);
 ylabel("THD (%)"); xlabel("Frequency (Hz)");
 xlim([15 20000]);
 
 
-% 
+
