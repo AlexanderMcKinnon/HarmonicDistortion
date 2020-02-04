@@ -7,9 +7,21 @@ unsmooth_faxis =  zfs*(0:length(z)-1)/length(z);
 num_peaks = 15;
 last_harmonic = 6;  % Choose which harmonic is last to display - rest will be plotted but greyed out with noise
 
-
+int_maybe_noise = [];
 figure; plot(z);hold on;
 noise_in_signal=z(1:(3e5));
+noise_faxis = zfs*(0:length(noise_in_signal)-1)/length(noise_in_signal);
+maybe_noise = 20*log10(abs(fft(noise_in_signal)));
+int_maybe_noise = interp1(noise_faxis, maybe_noise, unsmooth_faxis);
+[smoothed_maybe_noise, n_axis] = rlogbark(unsmooth_faxis, int_maybe_noise);
+int_smoothed_maybe_noise = interp1(n_axis, smoothed_maybe_noise, unsmooth_faxis);
+figure(12)
+% semilogx(noise_faxis, maybe_noise, 'LineWidth', 2)
+% hold on 
+semilogx(unsmooth_faxis, int_smoothed_maybe_noise)
+xlim([15 20000])
+hold off
+
 noise_in_singal_abs=abs(noise_in_signal);
 noise=mean(noise_in_singal_abs);
 Nplus=z>0;
@@ -17,6 +29,7 @@ Nplus=Nplus.*noise;
 Nminus=z<0;
 Nminus=Nminus.*noise;
 z=z-Nplus+Nminus;
+figure()
 plot(z);
 legend("Noise","NoNoise");
 
