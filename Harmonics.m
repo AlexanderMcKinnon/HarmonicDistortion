@@ -8,7 +8,7 @@ unsmooth_faxis =  zfs*(0:length(z)-1)/length(z);
 backgroundNoiseFile = z(1:3e5); %In the app this will be a seperate file that will have to be opened with audrioread. Christophe wants to record a signal to use as background noise.
 %% Variables to be in the User Interface
 num_peaks = 15; %Number of harmonics to remove from the signal, this needs to be specified by the user.
-num_peaks_view = 9;%Number of harmonics to view individually
+num_peaks_view = 4;%Number of harmonics to view individually
 num_peaks_view_noise = 9; %number of harmonics to view as noise
 highlight_harmonic = 1; %Variable that determines which harmonic to make bold, if 0 then higlight none
 
@@ -60,3 +60,12 @@ ylabel('Amplitude (dB)');
 legend(label');
 xlim([15 20000]);
 grid on;
+
+%% THD
+[THD, max_THD, freq_of_max_THD, min_THD, freq_of_min_THD] = calculateTHD(noiseless_z, zfs, ft_wins_hann);
+figure;
+semilogx(THD);
+ylabel("THD (dB)"); xlabel("Frequency (Hz)");
+grid on
+xlim([15 20000]);
+title('Total harmonic distortion');
