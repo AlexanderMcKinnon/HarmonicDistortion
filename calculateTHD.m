@@ -25,9 +25,11 @@ for frequency = 1:40000
 %   the THD calculated at each frequency between 1Hz and 40kHz
 end
 
+% finding minimum THD
 freq_of_min_THD = find(THD(15:20000) == min(THD(15:20000)));
 min_THD = THD(freq_of_min_THD);
 
+% finding maximum THD
 freq_of_max_THD = find(THD(15:20000) == max(THD(15:20000)));
 max_THD = THD(freq_of_max_THD);
 end
