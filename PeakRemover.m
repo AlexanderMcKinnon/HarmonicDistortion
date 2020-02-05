@@ -1,6 +1,5 @@
-function ClearSignal=PeakRemover(file,n)
-[z,zfs]=audioread(file);
-ThreeP = AutoPeak(file);
+function ClearSignal=PeakRemover(z,zfs,n)
+ThreeP = AutoPeak(z,zfs);
 m=MidFinder(ThreeP,n);
 
 m2=round(m(2)*zfs);

@@ -1,7 +1,6 @@
-function ThreePeaks=AutoPeak(file)
-[z,zfs]=audioread(file);% impulse response
-zinfo = audioinfo(file);%
-NoSamples = zinfo.TotalSamples;
+function ThreePeaks=AutoPeak(z,zfs)
+
+NoSamples = length(z);
 
 [zsort index] = sort(z);
 
