@@ -5,6 +5,7 @@ close all
 file = 'GBS_Project.wav';
 [z,zfs]=audioread(file);
 unsmooth_faxis =  zfs*(0:length(z)-1)/length(z);
+%% Variables to be in the User Interface
 num_peaks = 15; %Number of harmonics to remove from the signal, this needs to be specified by the user.
 num_peaks_view = 7;%Number of harmonics to view individually
 num_peaks_view_noise = 9; %number of harmonics to view as noise
