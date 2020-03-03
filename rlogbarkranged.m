@@ -26,10 +26,10 @@ function [log_means, freq_out] = rlogbarkranged(freq, signal, min_freq, max_freq
         end
     end
     for i = 1:length(bark_freq)
-        if bark_freq(i) == max_freq
+        if bark_freq(i) > max_freq
             max_freq_bark_band = i;
             break;
-        elseif max_freq > bark_freq(end)
+        elseif max_freq >= bark_freq(end)
             max_freq = bark_freq(end);
             max_freq_bark_band = length(bark_freq);
         end
